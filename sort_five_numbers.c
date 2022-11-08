@@ -25,6 +25,14 @@ static int find_smallest(t_stack *stack)
     }
     return smallest;
 }
+static int insert_biggest(t_stack *stack_a, t_stack *stack_b, int *biggest)
+{
+    while (stack_a->stack[0] != *biggest)
+        rotate_stack(stack_a);
+    *biggest = stack_b->stack[0];
+    rotate_stack(stack_a);
+    push_to_stack(stack_b, stack_a);
+}
 void sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
 {
     int i = 0;
@@ -41,13 +49,8 @@ void sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
     while (stack_b->size != 0)
     {
         if (stack_b->stack[0] > biggest)
-        {
-            while (stack_a->stack[0] != biggest)
-                rotate_stack(stack_a);
-            biggest = stack_b->stack[0];
-            rotate_stack(stack_a);
-            push_to_stack(stack_b, stack_a);
-        }
+            insert_biggest(stack_a, stack_b, &biggest);
+
         else
         {
 
