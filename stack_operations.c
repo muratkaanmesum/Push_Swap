@@ -85,7 +85,7 @@ void push_to_stack(t_stack *src, t_stack *dest)
     // ft_putchar_fd(dest->name, 1);
     printf("%s%c\n", "p", dest->name);
 }
-void print_stacks(t_stack *stack)
+void print_stack(t_stack *stack)
 {
     int i = 0;
     while (i < stack->size)

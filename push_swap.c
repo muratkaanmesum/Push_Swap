@@ -6,12 +6,12 @@
 int main(int argc, char const *argv[])
 {
     int *arr = malloc(sizeof(int) * argc);
-    char **values = malloc(sizeof(char *) * 6);
-    values[0] = "16";
-    values[1] = "3";
-    values[2] = "4";
+    char **values = malloc(sizeof(char *) * 5);
+    values[0] = "5";
+    values[1] = "1";
+    values[2] = "2";
     values[3] = "7";
-    values[4] = "15";
+    values[4] = "3";
 
     argc = 6;
 
@@ -41,5 +41,6 @@ int main(int argc, char const *argv[])
     stack_b->size = 0;
     stack_b->name = 'b';
     sort_five_numbers(stack_a, stack_b);
+
     return 0;
 }

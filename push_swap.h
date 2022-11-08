@@ -11,4 +11,4 @@ void reverse_rotate_stack(t_stack *stack);
 void sort_three_numbers(t_stack *stack);
 void sort_five_numbers(t_stack *stack_a, t_stack *stack_b);
 void push_to_stack(t_stack *src, t_stack *dest);
-void print_stacks(t_stack *stack);
+void print_stack(t_stack *stack);
