@@ -1,4 +1,4 @@
-#include "libft/libft.h"
+#include "ft_libft/libft.h"
 #include "push_swap.h"
 
 static int	find_biggest(t_stack *stack)
