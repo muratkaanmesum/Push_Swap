@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	main(int argc, char const *argv[])
+int	main(int argc, char *argv[])
 {
 	int		*arr;
 	int		i;
@@ -11,11 +11,8 @@ int	main(int argc, char const *argv[])
 	t_stack	*stack_b;
 	int		value;
 
+	i = 0;
 	arr = malloc(sizeof(int) * argc);
-	while (argc > 1)
-	{
-		value = ft_atoi(argv[argc - 1]);
-		arr[argc - 2] = value;
-	}
+	get_args(argc, argv);
 	return (0);
 }
