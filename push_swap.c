@@ -12,7 +12,6 @@ int	main(int argc, char *argv[])
 	int		value;
 
 	i = 0;
-	arr = malloc(sizeof(int) * argc);
-	get_args(argc, argv);
+	arr = get_args(argc, argv);
 	return (0);
 }
