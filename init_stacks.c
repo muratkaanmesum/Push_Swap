@@ -7,5 +7,6 @@ t_stack	*init_stack(int *arr, int argc)
 	stack = malloc(sizeof(t_stack));
 	stack->stack = arr;
 	stack->size = argc - 1;
+	stack->name = 'a';
 	return (stack);
 }
