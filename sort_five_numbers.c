@@ -1,10 +1,10 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static int find_smallest(t_stack *stack)
+static int	find_smallest(t_stack *stack)
 {
-	int smallest;
-	int i;
+	int	smallest;
+	int	i;
 
 	smallest = stack->stack[0];
 	i = 0;
@@ -16,9 +16,10 @@ static int find_smallest(t_stack *stack)
 	}
 	return (smallest);
 }
-static int find_index(t_stack *stack, int value)
+
+static int	find_index(t_stack *stack, int value)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -30,13 +31,12 @@ static int find_index(t_stack *stack, int value)
 	return (-1);
 }
 
-void sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
+void	sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
 {
-	int i;
-	int smallest;
+	int	i;
+	int	smallest;
 
 	i = 0;
-
 	smallest = find_smallest(stack_a);
 	while (stack_a->size > 3)
 	{
@@ -51,7 +51,7 @@ void sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
 		smallest = find_smallest(stack_a);
 	}
 	sort_three_numbers(stack_a);
-	push_to_stack(stack_b, stack_a);
-	push_to_stack(stack_b, stack_a);
+	while (stack_b->size > 0)
+		push_to_stack(stack_b, stack_a);
 	print_stack(stack_a);
 }

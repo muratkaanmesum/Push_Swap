@@ -19,5 +19,6 @@ clean:
 
 fclean: clean
 	make fclean -C libft/
-	
+	rm -f $(NAME)
+	rm -f push_swap
 re: fclean all

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_args.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 10:56:29 by mmesum            #+#    #+#             */
+/*   Updated: 2022/11/21 11:00:09 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/libft.h"
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-void error(int error_type)
+
+void	error(int error_type)
 {
 	if (error_type == 1)
 		printf("invalid input");
@@ -10,9 +23,11 @@ void error(int error_type)
 		printf("duplicate input");
 	exit(0);
 }
-int check_num(char *str)
+
+int	check_num(char *str)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
@@ -24,12 +39,17 @@ int check_num(char *str)
 	}
 	return (1);
 }
-int get_num_count(char **argv)
+
+int	get_num_count(char **argv)
 {
-	int count = 0;
-	int i = 1;
-	int j = 0;
-	char **temp;
+	int		count;
+	int		i;
+	int		j;
+	char	**temp;
+
+	count = 0;
+	i = 1;
+	j = 0;
 	while (argv[i])
 	{
 		j = 0;
@@ -46,10 +66,12 @@ int get_num_count(char **argv)
 	}
 	return (count);
 }
-static void check_dup(int *arr, int argc)
+
+static void	check_dup(int *arr, int argc)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < argc)
 	{
@@ -63,18 +85,22 @@ static void check_dup(int *arr, int argc)
 		i++;
 	}
 }
-int *get_args(int argc, char **argv)
+
+int	*get_args(int argc, char **argv)
 {
-	int i;
-	int j = 0;
-	int *arr;
-	int numcount = get_num_count(argv);
-	int t = 0;
-	arr = malloc(sizeof(int) * numcount);
+	int		i;
+	int		j;
+	int		*arr;
+	int		t;
+	char	**split;
+
+	j = 0;
+	t = 0;
+	arr = malloc(sizeof(int) * get_num_count(argv));
 	i = 1;
 	while (i < argc)
 	{
-		char **split = ft_split(argv[i], ' ');
+		split = ft_split(argv[i], ' ');
 		j = 0;
 		while (split[j])
 		{
@@ -84,7 +110,6 @@ int *get_args(int argc, char **argv)
 		}
 		i++;
 	}
-	check_dup(arr, numcount);
-
+	check_dup(arr, get_num_count(argv));
 	return (arr);
 }
