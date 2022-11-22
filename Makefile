@@ -1,4 +1,7 @@
-SRCS = init_stacks.c push_swap.c sort_three_numbers.c stack_operations.c sort_five_numbers.c handle_args.c
+SRCS = init_stacks.c push_swap.c sort_three_numbers.c \
+stack_operations.c sort_five_numbers.c handle_args.c \
+big_stack_utils.c
+
 
 OBJS			= $(SRCS:.c=.o)
 

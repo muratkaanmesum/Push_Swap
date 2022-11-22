@@ -2,13 +2,11 @@
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-int	check_if_sorted(t_stack *stack_a)
+int check_if_sorted(t_stack *stack_a)
 {
-	int	i;
-	int	j;
-	int	flag;
+	int i;
+	int j;
 
-	flag = 0;
 	j = 0;
 	i = 0;
 	while (i < stack_a->size)
@@ -24,13 +22,13 @@ int	check_if_sorted(t_stack *stack_a)
 	}
 	return (1);
 }
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	int		*arr;
-	int		i;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		value;
+	int *arr;
+	int i;
+	t_stack *stack_a;
+	t_stack *stack_b;
+	int value;
 
 	i = 0;
 	arr = get_args(argc, argv);
