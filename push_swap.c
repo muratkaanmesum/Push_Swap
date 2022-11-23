@@ -2,10 +2,10 @@
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-int check_if_sorted(t_stack *stack_a)
+int	check_if_sorted(t_stack *stack_a)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	i = 0;
@@ -22,13 +22,13 @@ int check_if_sorted(t_stack *stack_a)
 	}
 	return (1);
 }
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int *arr;
-	int i;
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int value;
+	int		*arr;
+	int		i;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		value;
 
 	i = 0;
 	arr = get_args(argc, argv);
@@ -41,5 +41,7 @@ int main(int argc, char *argv[])
 		return (1);
 	if (stack_a->size < 6)
 		sort_five_numbers(stack_a, stack_b);
+	else
+		sort_big_stack(stack_a, stack_b);
 	return (0);
 }
