@@ -19,3 +19,49 @@ void	smart_rotate_stack(t_stack *stack, int value)
 	else
 		reverse_rotate_stack(stack);
 }
+
+int	find_index(t_stack *stack, int value)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->stack[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int	find_biggest(t_stack *stack)
+{
+	int	biggest;
+	int	i;
+
+	biggest = stack->stack[0];
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->stack[i] > biggest)
+			biggest = stack->stack[i];
+		i++;
+	}
+	return (biggest);
+}
+
+int	find_smallest(t_stack *stack)
+{
+	int	smallest;
+	int	i;
+
+	smallest = stack->stack[0];
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->stack[i] < smallest)
+			smallest = stack->stack[i];
+		i++;
+	}
+	return (smallest);
+}

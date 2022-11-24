@@ -6,42 +6,12 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:39:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/11/23 12:48:47 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/11/24 14:51:31 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-
-int	find_smallest(t_stack *stack)
-{
-	int	smallest;
-	int	i;
-
-	smallest = stack->stack[0];
-	i = 0;
-	while (i < stack->size)
-	{
-		if (stack->stack[i] < smallest)
-			smallest = stack->stack[i];
-		i++;
-	}
-	return (smallest);
-}
-
-int	find_index(t_stack *stack, int value)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size)
-	{
-		if (stack->stack[i] == value)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 void	sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
 {
