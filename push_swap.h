@@ -4,6 +4,7 @@ typedef struct s_stack
 	int		size;
 	char	name;
 }			t_stack;
+
 typedef struct s_pos
 {
 	int		start;

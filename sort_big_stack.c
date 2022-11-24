@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/11/24 16:21:25 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:20:47 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,35 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 		push_to_stack(stack_a, stack_b);
 	}
 }
+int	find_diff(t_stack *stack, int value)
+{
+	int	i;
+	int	diff;
+	int	diff_value;
 
+	i = 0;
+	diff = 2147483647;
+	while (i < stack->size)
+	{
+		diff_value = value - stack->stack[i];
+		if (diff_value > 0 && diff_value < diff)
+			diff = diff_value;
+		i++;
+	}
+	i = 0;
+	while (i < stack->size)
+	{
+		diff_value = value - stack->stack[i];
+		if (diff == diff_value)
+			return (stack->stack[i]);
+		i++;
+	}
+	return (-1);
+}
 void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
 {
 	int	smallest;
+	int	diff_value;
 
 	while (stack_b->stack[0] != min_step_value)
 		smart_rotate_stack(stack_b, min_step_value);
@@ -77,10 +102,20 @@ void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
 			smart_rotate_stack(stack_a, smallest);
 		push_to_stack(stack_b, stack_a);
 	}
+	else if (min_step_value < find_smallest(stack_a))
+	{
+		smallest = find_smallest(stack_a);
+		while (stack_a->stack[0] != smallest)
+			smart_rotate_stack(stack_a, smallest);
+		push_to_stack(stack_b, stack_a);
+	}
 	else
 	{
-		while (stack_a->stack[0] > min_step_value)
-			smart_rotate_stack(stack_a, min_step_value);
+		diff_value = find_diff(stack_a, min_step_value);
+		while (stack_a->stack[0] != diff_value)
+			smart_rotate_stack(stack_a, diff_value);
+		smart_rotate_stack(stack_a, diff_value);
+		push_to_stack(stack_b, stack_a);
 	}
 }
 void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
@@ -93,4 +128,6 @@ void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 		min_step_value = calculate_min_steps(stack_a, stack_b);
 		push_min_step(stack_a, stack_b, min_step_value);
 	}
+	while (stack_a->stack[0] != find_smallest(stack_a))
+		smart_rotate_stack(stack_a, find_smallest(stack_a));
 }
