@@ -14,11 +14,12 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 	make -C libft/
 	ar rc $(NAME) $(OBJS) libft/*.o
+	mv *.o ./objs
 	gcc -o push_swap $(NAME)
 
 clean:
 	make clean -C libft/
-	rm -f $(OBJS)
+	rm -f ./objs/*.o
 
 fclean: clean
 	make fclean -C libft/

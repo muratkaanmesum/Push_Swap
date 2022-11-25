@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/11/24 17:20:47 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/11/25 12:19:38 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,12 @@ void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 	int	min_step_value;
 
 	push_non_sorted(stack_a, stack_b);
-	while (stack_b->size > 0)
-	{
-		min_step_value = calculate_min_steps(stack_a, stack_b);
-		push_min_step(stack_a, stack_b, min_step_value);
-	}
-	while (stack_a->stack[0] != find_smallest(stack_a))
-		smart_rotate_stack(stack_a, find_smallest(stack_a));
+	printf("%d", calculate_min_steps(stack_a, stack_b));
+	// while (stack_b->size > 0)
+	// {
+	// 	min_step_value = calculate_min_steps(stack_a, stack_b);
+	// 	push_min_step(stack_a, stack_b, min_step_value);
+	// }
+	// while (stack_a->stack[0] != find_smallest(stack_a))
+	// 	smart_rotate_stack(stack_a, find_smallest(stack_a));
 }
