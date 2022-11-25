@@ -54,6 +54,7 @@ int	calculate_min_steps(t_stack *stack_a, t_stack *stack_b)
 	int	cur_value;
 	int	cur_value_steps;
 
+	cur_value_steps = 0;
 	i = 0;
 	min_steps = 2147483647;
 	while (i < stack_b->size)
