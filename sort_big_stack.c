@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/05 17:05:08 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/05 17:35:27 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,4 +159,5 @@ void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 	}
 	while (stack_a->stack[0] != find_smallest(stack_a))
 		smart_rotate_stack(stack_a, find_smallest(stack_a));
+	free(sorted_arr);
 }
