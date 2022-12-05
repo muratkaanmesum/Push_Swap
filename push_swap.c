@@ -43,5 +43,9 @@ int	main(int argc, char *argv[])
 		sort_five_numbers(stack_a, stack_b);
 	else
 		sort_big_stack(stack_a, stack_b);
+	free(stack_a->stack);
+	free(stack_a);
+	free(stack_b->stack);
+	free(stack_b);
 	return (0);
 }
