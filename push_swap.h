@@ -28,3 +28,4 @@ int			calculate_min_steps(t_stack *stack_a, t_stack *stack_b);
 int			find_biggest(t_stack *stack);
 int			find_smallest(t_stack *stack);
 int			find_index(t_stack *stack, int value);
+int			*get_sorted_arr(t_stack *stack);

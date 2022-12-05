@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/05 14:34:25 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/05 17:05:08 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ t_pos	*find_sorted_section(t_stack *stack)
 	return (pos);
 }
 
+int	check_sorted(t_stack *stack, t_pos *sorted_pos)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (i < sorted_pos->start || i > sorted_pos->end)
+		{
+			if (stack->stack[i] > stack->stack[i + 1])
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 {
 	t_pos	*sorted_pos;
@@ -49,78 +65,48 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 
 	i = 0;
 	sorted_pos = find_sorted_section(stack_a);
-	startvalue = stack_a->stack[sorted_pos->start];
-	while (stack_a->size != sorted_pos->end - sorted_pos->start + 1)
+	if (check_sorted(stack_a, sorted_pos) == 0)
+		while (stack_a->size > 1)
+			push_to_stack(stack_a, stack_b);
+	else
 	{
-		if (stack_a->stack[0] == startvalue)
+		startvalue = stack_a->stack[sorted_pos->start];
+		while (stack_a->size != sorted_pos->end - sorted_pos->start + 1)
 		{
-			while (i < sorted_pos->end - sorted_pos->start + 1)
+			if (stack_a->stack[0] == startvalue)
 			{
-				rotate_stack(stack_a);
-				i++;
+				while (i < sorted_pos->end - sorted_pos->start + 1)
+				{
+					rotate_stack(stack_a);
+					i++;
+				}
 			}
+			push_to_stack(stack_a, stack_b);
 		}
-		push_to_stack(stack_a, stack_b);
 	}
 }
 
-int	find_diff(t_stack *stack, int value)
+int	find_value(int min_step_value, int *sorted_arr, int size, t_stack *stack_a)
 {
 	int	i;
-	int	diff;
-	int	diff_value;
+	int	j;
 
 	i = 0;
-	diff = 2147483647;
-	while (i < stack->size)
+	j = 1;
+	while (i < size)
 	{
-		diff_value = value - stack->stack[i];
-		if (diff_value > 0 && diff_value < diff)
-			diff = diff_value;
-		i++;
-	}
-	i = 0;
-	while (i < stack->size)
-	{
-		diff_value = value - stack->stack[i];
-		if (diff == diff_value)
-			return (stack->stack[i]);
+		if (sorted_arr[i] == min_step_value)
+		{
+			while (find_index(stack_a, sorted_arr[i - j]) == -1)
+				j++;
+			return (sorted_arr[i - j]);
+		}
 		i++;
 	}
 	return (-1);
 }
-int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-int	find_negative_pos(t_stack *stack, int value)
-{
-	int	i;
-	int	diff;
-	int	diff_value;
-
-	i = 0;
-	diff = 2147483647;
-	while (i < stack->size)
-	{
-		diff_value = value - ft_abs(stack->stack[i]);
-		if (diff_value < 0 && diff_value > -diff)
-			diff = diff_value;
-		i++;
-	}
-	i = 0;
-	while (i < stack->size)
-	{
-		diff_value = value - ft_abs(stack->stack[i]);
-		if (diff == diff_value)
-			return (stack->stack[i]);
-		i++;
-	}
-	return (-1);
-}
-void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
+void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value,
+		int *sorted_arr, int size)
 {
 	int	smallest;
 	int	diff_value;
@@ -143,11 +129,7 @@ void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
 	}
 	else
 	{
-		diff_value = find_diff(stack_a, min_step_value);
-		if (diff_value == -1)
-		{
-			diff_value = find_negative_pos(stack_a, min_step_value);
-		}
+		diff_value = find_value(min_step_value, sorted_arr, size, stack_a);
 		if (find_index(stack_a, diff_value) < stack_a->size / 2)
 		{
 			while (stack_a->stack[0] != diff_value)
@@ -161,54 +143,19 @@ void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
 	}
 }
 
-void	sort_arr(int *arr, int size)
-{
-	int	i;
-	int	j;
-	int	temp;
-
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (arr[i] > arr[j])
-			{
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	copy_stack(int *src, int *dest, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-}
 void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min_step_value;
 	int	*sorted_arr;
+	int	size;
 
-	sorted_arr = malloc(sizeof(int) * stack_a->size);
-	copy_stack(stack_a->stack, sorted_arr);
-	sort_arr(sorted_arr, stack_a->size);
+	size = stack_a->size;
+	sorted_arr = get_sorted_arr(stack_a);
 	push_non_sorted(stack_a, stack_b);
 	while (stack_b->size > 0)
 	{
 		min_step_value = calculate_min_steps(stack_a, stack_b);
-		push_min_step(stack_a, stack_b, min_step_value);
+		push_min_step(stack_a, stack_b, min_step_value, sorted_arr, size);
 	}
 	while (stack_a->stack[0] != find_smallest(stack_a))
 		smart_rotate_stack(stack_a, find_smallest(stack_a));
