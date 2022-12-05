@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/11/25 17:35:50 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/05 12:39:20 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 		push_to_stack(stack_a, stack_b);
 	}
 }
+
 int	find_diff(t_stack *stack, int value)
 {
 	int	i;
@@ -88,7 +89,31 @@ int	find_diff(t_stack *stack, int value)
 	}
 	return (-1);
 }
+int	find_negative_diff(t_stack *stack, int value)
+{
+	int	i;
+	int	diff;
+	int	diff_value;
 
+	i = 0;
+	diff = -2147483648;
+	while (i < stack->size)
+	{
+		diff_value = stack->stack[i] - value;
+		if (diff_value > diff)
+			diff = diff_value;
+		i++;
+	}
+	i = 0;
+	while (i < stack->size)
+	{
+		diff_value = stack->stack[i] - value;
+		if (diff == diff_value)
+			return (stack->stack[i]);
+		i++;
+	}
+	return (-1);
+}
 void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value)
 {
 	int	smallest;
