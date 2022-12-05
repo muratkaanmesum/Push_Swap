@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 int	calculate_right_position(t_stack *stack, int value)
 {
@@ -30,23 +31,14 @@ int	calculate_right_position(t_stack *stack, int value)
 }
 int	calculate_rotation_steps(t_stack *stack, int value)
 {
-	int	i;
 	int	index;
 
-	i = 0;
-	index = 0;
-	while (i < stack->size)
-	{
-		if (stack->stack[i] == value)
-			index = i;
-		i++;
-	}
+	index = find_index(stack, value);
 	if (index < stack->size / 2)
 		return (index);
 	else
 		return (stack->size - index);
 }
-
 int	calculate_min_steps(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
@@ -54,14 +46,13 @@ int	calculate_min_steps(t_stack *stack_a, t_stack *stack_b)
 	int	cur_value;
 	int	cur_value_steps;
 
-	cur_value_steps = 0;
 	i = 0;
 	min_steps = 2147483647;
 	while (i < stack_b->size)
 	{
-		cur_value = stack_b->stack[i];
-		cur_value_steps += calculate_rotation_steps(stack_b, cur_value);
-		cur_value_steps += calculate_right_position(stack_a, cur_value);
+		cur_value_steps = 0;
+		cur_value_steps += calculate_rotation_steps(stack_b, stack_b->stack[i]);
+		cur_value_steps += calculate_right_position(stack_a, stack_b->stack[i]);
 		if (cur_value_steps < min_steps)
 		{
 			min_steps = cur_value_steps;

@@ -22,6 +22,7 @@ int	check_if_sorted(t_stack *stack_a)
 	}
 	return (1);
 }
+
 int	main(int argc, char *argv[])
 {
 	int		*arr;

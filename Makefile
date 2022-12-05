@@ -7,19 +7,17 @@ OBJS			= $(SRCS:.c=.o)
 
 NAME			= push_swap.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
 	make -C libft/
 	ar rc $(NAME) $(OBJS) libft/*.o
-	mv *.o ./objs
 	gcc -o push_swap $(NAME)
 
 clean:
 	make clean -C libft/
-	rm -f ./objs/*.o
+	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C libft/
