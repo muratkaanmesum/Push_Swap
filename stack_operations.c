@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:59:45 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/06 19:12:41 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 21:50:51 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,17 @@ void	push_to_stack(t_stack *src, t_stack *dest)
 	ft_putchar_fd('p', 1);
 	ft_putchar_fd(dest->name, 1);
 	ft_putchar_fd('\n', 1);
+}
+#include <stdio.h>
+void	print_stack(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		printf("%d ", stack->stack[i]);
+		i++;
+	}
+	printf("\n");
 }

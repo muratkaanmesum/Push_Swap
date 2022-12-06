@@ -6,31 +6,30 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/06 18:58:17 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/07 00:34:19 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-t_pos	*find_sorted_section(t_stack *stack)
+void	get_pos(t_stack *stack, t_pos *pos)
 {
-	int		i;
-	int		startindex;
-	int		biggestsec;
-	t_pos	*pos;
+	int	startindex;
+	int	biggestsec;
+	int	i;
 
 	i = 0;
-	startindex = 0;
-	pos = malloc(sizeof(t_pos));
 	biggestsec = 0;
+	startindex = 0;
 	while (startindex < stack->size - 1)
 	{
 		i = startindex;
-		while (stack->stack[i] < stack->stack[i + 1])
+		while (stack->stack[i] < stack->stack[i + 1] && i < stack->size - 1)
+		{
 			i++;
+		}
 		if (i - startindex > biggestsec)
 		{
 			biggestsec = i - startindex;
@@ -39,6 +38,16 @@ t_pos	*find_sorted_section(t_stack *stack)
 		}
 		startindex++;
 	}
+}
+
+t_pos	*find_sorted_section(t_stack *stack)
+{
+	t_pos	*pos;
+
+	pos = malloc(sizeof(t_pos));
+	pos->end = 0;
+	pos->start = 0;
+	get_pos(stack, pos);
 	return (pos);
 }
 
@@ -67,24 +76,18 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 
 	i = 0;
 	sorted_pos = find_sorted_section(stack_a);
-	if (check_sorted(stack_a, sorted_pos) == 0)
-		while (stack_a->size > 1)
-			push_to_stack(stack_a, stack_b);
-	else
+	startvalue = stack_a->stack[sorted_pos->start];
+	while (stack_a->size != sorted_pos->end - sorted_pos->start + 1)
 	{
-		startvalue = stack_a->stack[sorted_pos->start];
-		while (stack_a->size != sorted_pos->end - sorted_pos->start + 1)
+		if (stack_a->stack[0] == startvalue)
 		{
-			if (stack_a->stack[0] == startvalue)
+			while (i < sorted_pos->end - sorted_pos->start + 1)
 			{
-				while (i < sorted_pos->end - sorted_pos->start + 1)
-				{
-					rotate_stack(stack_a);
-					i++;
-				}
+				rotate_stack(stack_a);
+				i++;
 			}
-			push_to_stack(stack_a, stack_b);
 		}
+		push_to_stack(stack_a, stack_b);
 	}
 }
 

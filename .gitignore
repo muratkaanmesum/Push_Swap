@@ -4,4 +4,4 @@ settings.json
 *.o
 *.a
 push_swap
-./push_swap_tester
+push_swap_tester/
