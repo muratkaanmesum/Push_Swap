@@ -1,33 +1,41 @@
-#include "push_swap.h"
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_three_numbers.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 10:59:53 by mmesum            #+#    #+#             */
+/*   Updated: 2022/12/06 19:10:56 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void sort_three_numbers(t_stack *stack)
+#include "libft/libft.h"
+#include "push_swap.h"
+
+void	sort_three_numbers(t_stack *stack)
 {
-    if (stack->size != 3)
-        return;
-    int a = stack->stack[0]; // 4 7 3
-    int b = stack->stack[1];
-    int c = stack->stack[2];
-    if (a > b && b > c)
-    {
-        swap_stacks(stack);
-        reverse_rotate_stack(stack);
-    }
-    else if (a > b && b < c && a < c)
-    {
-        swap_stacks(stack);
-    }
-    else if (a > b && b < c && a > c)
-    {
-        rotate_stack(stack);
-    }
-    else if (a < b && b > c && a < c)
-    {
-        swap_stacks(stack);
-        rotate_stack(stack);
-    }
-    else if (a < b && b > c && a > c)
-    {
-        reverse_rotate_stack(stack);
-    }
+	int	b;
+	int	c;
+	int	a;
+
+	a = stack->stack[0];
+	b = stack->stack[1];
+	c = stack->stack[2];
+	if (a > b && b > c)
+	{
+		swap_stacks(stack);
+		reverse_rotate_stack(stack);
+	}
+	else if (a > b && b < c && a < c)
+		swap_stacks(stack);
+	else if (a > b && b < c && a > c)
+		rotate_stack(stack);
+	else if (a < b && b > c && a < c)
+	{
+		swap_stacks(stack);
+		rotate_stack(stack);
+	}
+	else if (a < b && b > c && a > c)
+		reverse_rotate_stack(stack);
 }
