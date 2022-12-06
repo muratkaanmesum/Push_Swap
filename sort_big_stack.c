@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/05 17:35:27 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:36:25 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	find_value(int min_step_value, int *sorted_arr, int size, t_stack *stack_a)
 	}
 	return (-1);
 }
+
 void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value,
 		int *sorted_arr, int size)
 {

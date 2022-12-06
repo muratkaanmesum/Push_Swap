@@ -39,6 +39,8 @@ int	main(int argc, char *argv[])
 	stack_b->name = 'b';
 	if (check_if_sorted(stack_a))
 		return (1);
+	if (stack_a->size == 2 && stack_a->stack[0] > stack_a->stack[1])
+		swap_stacks(stack_a);
 	if (stack_a->size < 6)
 		sort_five_numbers(stack_a, stack_b);
 	else

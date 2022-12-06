@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_sorted_arr.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 16:33:34 by mmesum            #+#    #+#             */
+/*   Updated: 2022/12/06 16:33:44 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdlib.h>
+
 void	sort_arr(int *arr, int size)
 {
 	int	i;
@@ -35,6 +48,7 @@ void	copy_stack(int *src, int *dest, int size)
 		i++;
 	}
 }
+
 int	*get_sorted_arr(t_stack *stack)
 {
 	int	*sorted_arr;

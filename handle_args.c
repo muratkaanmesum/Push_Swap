@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:56:29 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/05 13:40:34 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:34:08 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 void	error(int error_type)
 {
 	if (error_type == 1)
-		printf("Invalid input\n");
+		printf("Error\n");
 	else if (error_type == 2)
-		printf("Duplicate input\n");
+		printf("Error\n");
 	exit(0);
 }
 

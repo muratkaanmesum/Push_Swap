@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate_min_steps.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 16:32:48 by mmesum            #+#    #+#             */
+/*   Updated: 2022/12/06 16:32:57 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -29,6 +41,7 @@ int	calculate_right_position(t_stack *stack, int value)
 	}
 	return (-1);
 }
+
 int	calculate_rotation_steps(t_stack *stack, int value)
 {
 	int	index;
@@ -39,6 +52,7 @@ int	calculate_rotation_steps(t_stack *stack, int value)
 	else
 		return (stack->size - index);
 }
+
 int	calculate_min_steps(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;

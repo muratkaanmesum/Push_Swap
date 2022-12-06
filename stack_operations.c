@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:59:45 by mmesum            #+#    #+#             */
-/*   Updated: 2022/11/21 10:59:46 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:31:57 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	rotate_stack(t_stack *stack)
 		}
 		stack->stack[i] = temp;
 	}
-	// ft_putchar_fd('r', 1);
-	// ft_putchar_fd(stack->name, 1);
-	printf("%s%c\n", "r", stack->name);
+	ft_putchar_fd('r', 1);
+	ft_putchar_fd(stack->name, 1);
+	ft_putstr_fd("\n", 1);
 }
 void	reverse_rotate_stack(t_stack *stack)
 {
@@ -49,9 +49,9 @@ void	reverse_rotate_stack(t_stack *stack)
 		}
 		stack->stack[i] = temp;
 	}
-	// ft_putstr_fd("rr", 1);
-	// ft_putchar_fd(stack->name, 1);
-	printf("%s%c\n", "rr", stack->name);
+	ft_putstr_fd("rr", 1);
+	ft_putchar_fd(stack->name, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	swap_stacks(t_stack *stack)
@@ -64,9 +64,9 @@ void	swap_stacks(t_stack *stack)
 		stack->stack[0] = stack->stack[1];
 		stack->stack[1] = temp;
 	}
-	// ft_putchar_fd('s', 1);
-	// ft_putchar_fd(stack->name, 1);
-	printf("%s%c\n", "s", stack->name);
+	ft_putchar_fd('s', 1);
+	ft_putchar_fd(stack->name, 1);
+	ft_putstr_fd("\n", 1);
 }
 
 void	push_to_stack(t_stack *src, t_stack *dest)
@@ -92,19 +92,7 @@ void	push_to_stack(t_stack *src, t_stack *dest)
 		src->size--;
 		dest->size++;
 	}
-	// ft_putchar_fd('p', 1);
-	// ft_putchar_fd(dest->name, 1);
-	printf("%s%c\n", "p", dest->name);
-}
-void	print_stack(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size)
-	{
-		printf("%d ", stack->stack[i]);
-		i++;
-	}
-	printf("\n");
+	ft_putchar_fd('p', 1);
+	ft_putchar_fd(dest->name, 1);
+	ft_putchar_fd('\n', 1);
 }
