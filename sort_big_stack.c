@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/06 16:36:25 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 18:58:17 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 t_pos	*find_sorted_section(t_stack *stack)
 {
 	int		i;
@@ -57,6 +58,7 @@ int	check_sorted(t_stack *stack, t_pos *sorted_pos)
 	}
 	return (1);
 }
+
 void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 {
 	t_pos	*sorted_pos;
@@ -86,64 +88,6 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-int	find_value(int min_step_value, int *sorted_arr, int size, t_stack *stack_a)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (i < size)
-	{
-		if (sorted_arr[i] == min_step_value)
-		{
-			while (find_index(stack_a, sorted_arr[i - j]) == -1)
-				j++;
-			return (sorted_arr[i - j]);
-		}
-		i++;
-	}
-	return (-1);
-}
-
-void	push_min_step(t_stack *stack_a, t_stack *stack_b, int min_step_value,
-		int *sorted_arr, int size)
-{
-	int	smallest;
-	int	diff_value;
-
-	while (stack_b->stack[0] != min_step_value)
-		smart_rotate_stack(stack_b, min_step_value);
-	if (min_step_value > find_biggest(stack_a))
-	{
-		smallest = find_smallest(stack_a);
-		while (stack_a->stack[0] != smallest)
-			smart_rotate_stack(stack_a, smallest);
-		push_to_stack(stack_b, stack_a);
-	}
-	else if (min_step_value < find_smallest(stack_a))
-	{
-		smallest = find_smallest(stack_a);
-		while (stack_a->stack[0] != smallest)
-			smart_rotate_stack(stack_a, smallest);
-		push_to_stack(stack_b, stack_a);
-	}
-	else
-	{
-		diff_value = find_value(min_step_value, sorted_arr, size, stack_a);
-		if (find_index(stack_a, diff_value) < stack_a->size / 2)
-		{
-			while (stack_a->stack[0] != diff_value)
-				smart_rotate_stack(stack_a, diff_value);
-			smart_rotate_stack(stack_a, diff_value);
-		}
-		else
-			while (stack_a->stack[stack_a->size - 1] != diff_value)
-				smart_rotate_stack(stack_a, diff_value);
-		push_to_stack(stack_b, stack_a);
-	}
-}
-
 void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min_step_value;
@@ -154,10 +98,7 @@ void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
 	sorted_arr = get_sorted_arr(stack_a);
 	push_non_sorted(stack_a, stack_b);
 	while (stack_b->size > 0)
-	{
-		min_step_value = calculate_min_steps(stack_a, stack_b);
-		push_min_step(stack_a, stack_b, min_step_value, sorted_arr, size);
-	}
+		push_min_step(stack_a, stack_b, sorted_arr, size);
 	while (stack_a->stack[0] != find_smallest(stack_a))
 		smart_rotate_stack(stack_a, find_smallest(stack_a));
 	free(sorted_arr);

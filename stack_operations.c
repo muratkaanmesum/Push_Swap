@@ -6,13 +6,13 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:59:45 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/06 16:31:57 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/06 19:12:41 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
+
 void	rotate_stack(t_stack *stack)
 {
 	int	temp;
@@ -33,6 +33,7 @@ void	rotate_stack(t_stack *stack)
 	ft_putchar_fd(stack->name, 1);
 	ft_putstr_fd("\n", 1);
 }
+
 void	reverse_rotate_stack(t_stack *stack)
 {
 	int	temp;

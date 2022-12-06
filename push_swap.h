@@ -1,3 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 19:03:46 by mmesum            #+#    #+#             */
+/*   Updated: 2022/12/06 19:05:20 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
 typedef struct s_stack
 {
 	int		*stack;
@@ -10,7 +25,6 @@ typedef struct s_pos
 	int		start;
 	int		end;
 }			t_pos;
-#define DEBUG printf("line: %d\n", __LINE__);
 void		swap_stacks(t_stack *stack);
 int			get_num_count(char **argv);
 t_stack		*init_stack(int *arr, int argc);
@@ -29,3 +43,6 @@ int			find_biggest(t_stack *stack);
 int			find_smallest(t_stack *stack);
 int			find_index(t_stack *stack, int value);
 int			*get_sorted_arr(t_stack *stack);
+void		push_min_step(t_stack *stack_a, t_stack *stack_b, int *sorted_arr,
+				int size);
+#endif

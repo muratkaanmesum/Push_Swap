@@ -1,7 +1,7 @@
 SRCS = init_stacks.c push_swap.c sort_three_numbers.c \
 stack_operations.c sort_five_numbers.c handle_args.c \
 big_stack_utils.c sort_big_stack.c calculate_min_steps.c \
-get_sorted_arr.c
+get_sorted_arr.c push_min_step.c
 
 OBJS			= $(SRCS:.c=.o)
 
