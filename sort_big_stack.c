@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:12:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/07 13:13:12 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 12:42:48 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	push_non_sorted(t_stack *stack_a, t_stack *stack_b)
 		}
 		push_to_stack(stack_a, stack_b);
 	}
+	free(sorted_pos);
 }
 
 void	sort_big_stack(t_stack *stack_a, t_stack *stack_b)
