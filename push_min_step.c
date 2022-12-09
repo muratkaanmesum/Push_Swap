@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:36:02 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 13:22:31 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 13:38:42 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	find_value(int min_step_value, int *sorted_arr, int size, t_stack *stack_a)
 	{
 		if (sorted_arr[i] == min_step_value)
 		{
-			while (find_index(stack_a, sorted_arr[i - j]) == -1)
+			while (find_index(stack_a, sorted_arr[i + j]) == -1)
 				j++;
-			return (sorted_arr[i - j]);
+			return (sorted_arr[i + j]);
 		}
 		i++;
 	}
@@ -83,15 +83,8 @@ void	push_min_step(t_stack *stack_a, t_stack *stack_b, int *sorted_arr,
 		push_edge(stack_a, stack_b);
 	else
 	{
-		if (find_index(stack_a, diff_value) < stack_a->size / 2)
-		{
-			while (stack_a->stack[0] != diff_value)
-				smart_rotate_stack(stack_a, diff_value);
+		while (stack_a->stack[0] != diff_value)
 			smart_rotate_stack(stack_a, diff_value);
-		}
-		else
-			while (stack_a->stack[stack_a->size - 1] != diff_value)
-				smart_rotate_stack(stack_a, diff_value);
 		push_to_stack(stack_b, stack_a);
 	}
 }
