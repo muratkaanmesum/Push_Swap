@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:13:25 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/07 00:43:03 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 16:41:36 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
+	if (argc == 1)
+		exit(1);
 	i = 0;
 	arr = get_args(argc, argv);
 	stack_a = init_stack(arr, get_num_count(argv));
@@ -50,16 +52,21 @@ int	main(int argc, char *argv[])
 	stack_b->size = 0;
 	stack_b->name = 'b';
 	if (check_if_sorted(stack_a))
-		return (1);
+	{
+		free_all(stack_a, stack_b);
+		exit(1);
+	}
 	if (stack_a->size == 2 && stack_a->stack[0] > stack_a->stack[1])
+	{
 		swap_stacks(stack_a);
+		free_all(stack_a, stack_b);
+		exit(0);
+	}
 	if (stack_a->size < 6)
 		sort_five_numbers(stack_a, stack_b);
 	else
 		sort_big_stack(stack_a, stack_b);
-	free(stack_a->stack);
-	free(stack_a);
-	free(stack_b->stack);
-	free(stack_b);
+	free_all(stack_a, stack_b);
+	system("leaks push_swap");
 	return (0);
 }

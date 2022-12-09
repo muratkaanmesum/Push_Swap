@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:03:46 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/07 11:40:18 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 16:18:12 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void		push_min_step(t_stack *stack_a, t_stack *stack_b, int *sorted_arr,
 				int size);
 void		smart_rotate_both(t_stack *stack_a, t_stack *stack_b);
 void		smart_reverse_rotate_both(t_stack *stack_a, t_stack *stack_b);
+void		free_all(t_stack *stack_a, t_stack *stack_b);
 #endif

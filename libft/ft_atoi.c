@@ -6,13 +6,13 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 18:08:57 by mmesum            #+#    #+#             */
-/*   Updated: 2022/10/19 18:13:42 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:46:52 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		sign;
 	int		i;
@@ -32,11 +32,7 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - 48);
-		if (result * sign < -2147483648)
-			return (0);
-		else if (result * sign > 2147483647)
-			return (-1);
 		i++;
 	}
-	return (result * sign);
+	return ((long)(result * sign));
 }

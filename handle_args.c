@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:56:29 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/06 23:54:19 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/09 16:49:14 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	error(int error_type)
+void	error(void)
 {
-	if (error_type == 1)
-		ft_putstr_fd("Error\n", 1);
-	else if (error_type == 2)
-		ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 1);
 	exit(0);
 }
 
 int	check_num(char *str)
 {
-	int	i;
+	int		i;
+	long	num;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
@@ -37,6 +35,9 @@ int	check_num(char *str)
 			return (0);
 		i++;
 	}
+	num = ft_atoi(str);
+	if (num > 2147483647 || num < -2147483648)
+		error();
 	return (1);
 }
 
@@ -57,9 +58,10 @@ int	get_num_count(char **argv)
 		while (temp[j])
 		{
 			if (!check_num(temp[j]))
-				error(1);
+				error();
 			j++;
 			count++;
+			free(temp[j - 1]);
 		}
 		i++;
 		free(temp);
@@ -79,7 +81,7 @@ static void	check_dup(int *arr, int argc)
 		while (j < argc)
 		{
 			if (arr[i] == arr[j])
-				error(2);
+				error();
 			j++;
 		}
 		i++;
@@ -107,7 +109,9 @@ int	*get_args(int argc, char **argv)
 			arr[t] = ft_atoi(split[j]);
 			j++;
 			t++;
+			free(split[j - 1]);
 		}
+		free(split);
 		i++;
 	}
 	check_dup(arr, get_num_count(argv));
