@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_five_numbers.c                                :+:      :+:    :+:   */
+/*   sort_small_numbers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:39:54 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 13:44:22 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:30:13 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
+void	sort_small_numbers(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 	int	smallest;

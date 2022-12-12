@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:36:02 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 13:38:42 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:14:08 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	find_value(int min_step_value, int *sorted_arr, int size, t_stack *stack_a)
 	}
 	return (-1);
 }
+
 int	check_rotate_both(t_stack *stack_a, t_stack *stack_b, int min_step_value,
 		int diff_value)
 {
@@ -56,19 +57,19 @@ int	check_rotate_both(t_stack *stack_a, t_stack *stack_b, int min_step_value,
 		return (1);
 	}
 	else if ((find_index(stack_a, diff_value) > stack_a->size / 2
-				&& find_index(stack_b, min_step_value) > stack_b->size / 2)
-			&& (stack_a->stack[0] != diff_value
-				&& stack_b->stack[0] != min_step_value))
+			&& find_index(stack_b, min_step_value) > stack_b->size / 2)
+		&& (stack_a->stack[0] != diff_value
+			&& stack_b->stack[0] != min_step_value))
 	{
 		smart_reverse_rotate_both(stack_a, stack_b);
 		return (1);
 	}
 	return (0);
 }
+
 void	push_min_step(t_stack *stack_a, t_stack *stack_b, int *sorted_arr,
 		int size)
 {
-	int	smallest;
 	int	diff_value;
 	int	min_step_value;
 

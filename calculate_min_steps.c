@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:32:48 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 13:27:49 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 12:42:54 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int	calculate_in_between(t_stack *stack, int value, int *sorted_arr, int size)
 int	calculate_right_position(t_stack *stack, int value, int *sorted_arr,
 		int size)
 {
-	int	biggest;
 	int	i;
-	int	j;
 
 	i = 0;
 	if (value > find_biggest(stack) || value < find_smallest(stack))

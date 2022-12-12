@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:03:46 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 16:18:12 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:31:26 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_stack		*init_stack(int *arr, int argc);
 void		rotate_stack(t_stack *stack);
 void		reverse_rotate_stack(t_stack *stack);
 void		sort_three_numbers(t_stack *stack);
-void		sort_five_numbers(t_stack *stack_a, t_stack *stack_b);
+void		sort_small_numbers(t_stack *stack_a, t_stack *stack_b);
 void		push_to_stack(t_stack *src, t_stack *dest);
 void		print_stack(t_stack *stack);
 int			*get_args(int argc, char **argv);
@@ -48,5 +48,6 @@ void		push_min_step(t_stack *stack_a, t_stack *stack_b, int *sorted_arr,
 				int size);
 void		smart_rotate_both(t_stack *stack_a, t_stack *stack_b);
 void		smart_reverse_rotate_both(t_stack *stack_a, t_stack *stack_b);
+void		add_to_arr(int *arr, char **split, int *j);
 void		free_all(t_stack *stack_a, t_stack *stack_b);
 #endif

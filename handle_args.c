@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:56:29 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 16:49:14 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:21:26 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,7 @@ int	*get_args(int argc, char **argv)
 	while (i < argc)
 	{
 		split = ft_split(argv[i], ' ');
-		j = 0;
-		while (split[j])
-		{
-			arr[t] = ft_atoi(split[j]);
-			j++;
-			t++;
-			free(split[j - 1]);
-		}
+		add_to_arr(arr, split, &j);
 		free(split);
 		i++;
 	}

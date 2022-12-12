@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   smart_rotate_both.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 13:23:00 by mmesum            #+#    #+#             */
+/*   Updated: 2022/12/12 13:24:42 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/libft.h"
 #include "push_swap.h"
+
 void	rotate_stack_temp(t_stack *stack)
 {
 	int	temp;
@@ -35,12 +48,14 @@ void	reverse_rotate_stack_temp(t_stack *stack)
 		stack->stack[i] = temp;
 	}
 }
+
 void	smart_rotate_both(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate_stack_temp(stack_a);
 	rotate_stack_temp(stack_b);
 	ft_putstr_fd("rr\n", 1);
 }
+
 void	smart_reverse_rotate_both(t_stack *stack_a, t_stack *stack_b)
 {
 	reverse_rotate_stack_temp(stack_a);

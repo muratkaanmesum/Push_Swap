@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:13:25 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/09 16:41:36 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:35:59 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,48 @@ int	check_if_sorted(t_stack *stack_a)
 	return (1);
 }
 
-int	main(int argc, char *argv[])
+t_stack	*init_stack_b(int size)
 {
-	int		*arr;
-	int		i;
-	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc == 1)
-		exit(1);
-	i = 0;
-	arr = get_args(argc, argv);
-	stack_a = init_stack(arr, get_num_count(argv));
 	stack_b = malloc(sizeof(t_stack));
-	stack_b->stack = malloc(sizeof(int) * get_num_count(argv));
+	stack_b->stack = malloc(sizeof(int) * size);
 	stack_b->size = 0;
 	stack_b->name = 'b';
+	return (stack_b);
+}
+
+void	check_edge_cases(t_stack *stack_a, t_stack *stack_b)
+{
 	if (check_if_sorted(stack_a))
 	{
 		free_all(stack_a, stack_b);
 		exit(1);
 	}
-	if (stack_a->size == 2 && stack_a->stack[0] > stack_a->stack[1])
+	else if (stack_a->size == 2 && stack_a->stack[0] > stack_a->stack[1])
 	{
 		swap_stacks(stack_a);
 		free_all(stack_a, stack_b);
 		exit(0);
 	}
+}
+
+int	main(int argc, char *argv[])
+{
+	int		*arr;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	if (argc == 1)
+		exit(1);
+	arr = get_args(argc, argv);
+	stack_a = init_stack(arr, get_num_count(argv));
+	stack_b = init_stack_b(stack_a->size);
+	check_edge_cases(stack_a, stack_b);
 	if (stack_a->size < 6)
-		sort_five_numbers(stack_a, stack_b);
+		sort_small_numbers(stack_a, stack_b);
 	else
 		sort_big_stack(stack_a, stack_b);
 	free_all(stack_a, stack_b);
-	system("leaks push_swap");
 	return (0);
 }
